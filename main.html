@@ -1,0 +1,69 @@
+<html> 
+ <head>
+    <title></title> 
+</head>
+ <body>
+    <p align="center"> 
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body> 
+ <script src="processing.js"></script> 
+ <script>
+var sketchProc = function(processingInstance) {
+with (processingInstance) {
+//START
+size(600, 400); 
+frameRate(30);
+
+noStroke();
+var x = 0;
+var y = 0;
+var delta = 5;
+var dir = 1;
+var speed = delta;
+draw = function() {
+    background (217, 141, 172);
+    fill (255, 242, 0);
+    rect (x,y,20,20);
+
+    if (dir === 1) {
+        x=x+speed;
+    }
+    if (dir === 2) {
+        x=x-speed;
+        y=y+speed;
+    }
+    if (dir === 3) {
+        x=x+speed;
+    }
+    if (dir === 4) {
+        x=x-speed;
+        y=y-speed;
+    }
+    //if cordinates
+    if (y <= 0 && x <= 0) {        //top left//
+        dir = 1;   
+    }
+    
+    if (y <= 0 && x >= 380) {      //top right//
+        dir = 2;
+    }
+    
+    if (y >= 380 && x <= 0) {      //bottom left//
+        dir = 3;
+    }
+    
+    if (y >= 380 && x >= 380) {    //bottom right//
+        dir = 4;
+    }
+};
+
+//END
+}
+};
+
+var canvas = document.getElementById("mycanvas"); 
+var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
